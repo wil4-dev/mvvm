@@ -1,5 +1,7 @@
 package com.kotlin.mvvm
 
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -21,6 +23,23 @@ class MainActivity : AppCompatActivity() {
             binding.tvAuthor.text = it.author
         })
         binding.viewContainer.setOnClickListener { quoteViewModel.randomQuote() }
+    }
 
+    //Método para cambiar a horizontal
+    private fun cambiarAHorizontal() {
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+    }
+    //Método para cambiar a vertical
+    private fun cambiarAVertical() {
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            cambiarAHorizontal()
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            cambiarAVertical()
+        }
     }
 }

@@ -25,21 +25,13 @@ class MainActivity : AppCompatActivity() {
         binding.viewContainer.setOnClickListener { quoteViewModel.randomQuote() }
     }
 
-    //Método para cambiar a horizontal
-    private fun cambiarAHorizontal() {
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-    }
-    //Método para cambiar a vertical
-    private fun cambiarAVertical() {
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-    }
-
+    // Cambia la orientación automática con una configuración
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            cambiarAHorizontal()
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            cambiarAVertical()
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         }
     }
 }

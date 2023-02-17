@@ -1,13 +1,14 @@
-package com.kotlin.mvvm
+package com.kotlin.mvvm.ui.view
 
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.kotlin.mvvm.databinding.ActivityMainBinding
-import com.kotlin.mvvm.viewmodel.QuoteViewModel
+import com.kotlin.mvvm.ui.viewmodel.QuoteViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,10 +19,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // guardado en memoria
+        quoteViewModel.onCreate()
+
         quoteViewModel.quoteModel.observe(this, Observer {
             binding.tvQuote.text = it.quote
             binding.tvAuthor.text = it.author
         })
+        quoteViewModel.isLoading.observe(this, Observer {
+            binding.loading.isVisible = it
+        })
+
         binding.viewContainer.setOnClickListener { quoteViewModel.randomQuote() }
     }
 

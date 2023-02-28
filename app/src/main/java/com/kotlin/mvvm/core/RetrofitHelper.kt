@@ -3,7 +3,6 @@ package com.kotlin.mvvm.core
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-// Objeto que obtiene peticiones en formato json
 object RetrofitHelper {
     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()

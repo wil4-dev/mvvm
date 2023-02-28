@@ -9,7 +9,9 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.kotlin.mvvm.databinding.ActivityMainBinding
 import com.kotlin.mvvm.ui.viewmodel.QuoteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val quoteViewModel: QuoteViewModel by viewModels()

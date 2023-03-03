@@ -17,16 +17,19 @@ class QuoteViewModel @Inject constructor(
 ) : ViewModel() {
     val quoteModel = MutableLiveData<Quote>()
     val isLoading = MutableLiveData<Boolean>()
+    val isLoading2 = MutableLiveData<Boolean>()
 
 
     // Corrutina que llama al caso de uso
     fun onCreate() {
         viewModelScope.launch {
             isLoading.postValue(true)
+            isLoading2.postValue(true)
             val result = getQuotesUseCase()
             if(!result.isNullOrEmpty()){
                 quoteModel.postValue(result[0])
                 isLoading.postValue(false)
+                isLoading2.postValue(false)
             }
         }
     }
@@ -34,11 +37,13 @@ class QuoteViewModel @Inject constructor(
     fun randomQuote() {
         viewModelScope.launch {
             isLoading.postValue(true)
+            isLoading2.postValue(true)
             val quote = getRandomQuoteUseCase()
             if(quote!=null){
-                quoteModel.postValue(quote!!)
+                quoteModel.postValue(quote)
             }
             isLoading.postValue(false)
+            isLoading2.postValue(false)
         }
     }
 }

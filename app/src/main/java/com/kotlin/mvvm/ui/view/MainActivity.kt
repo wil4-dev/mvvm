@@ -27,9 +27,13 @@ class MainActivity : AppCompatActivity() {
         quoteViewModel.quoteModel.observe(this, Observer {
             binding.tvQuote.text = it.quote
             binding.tvAuthor.text = it.author
+            binding.tvUser.text = it.user
         })
         quoteViewModel.isLoading.observe(this, Observer {
             binding.loading.isVisible = it
+        })
+        quoteViewModel.isLoading2.observe(this, Observer {
+            binding.loading2.isVisible = it
         })
 
         binding.viewContainer.setOnClickListener { quoteViewModel.randomQuote() }
